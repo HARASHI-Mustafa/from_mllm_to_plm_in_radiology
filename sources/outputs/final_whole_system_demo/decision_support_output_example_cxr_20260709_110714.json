@@ -1,0 +1,260 @@
+{
+  "metadata": {
+    "image_path": "/content/drive/MyDrive/plm_mllm_radiology_demo/input_images/example_cxr.jpg",
+    "workflow": "CXR image -> CheXagent Findings/Impression -> PLM structured extraction -> decision-support output",
+    "clinical_framing": "decision_support_only_not_autonomous_diagnosis",
+    "findings_mllm_repo_id": "StanfordAIMI/CheXagent-2-3b-srrg-findings",
+    "impression_mllm_repo_id": "StanfordAIMI/CheXagent-2-3b-srrg-impression",
+    "findings_mllm_source": "/content/drive/MyDrive/plm_mllm_radiology_demo/mllm_models/chexagent_findings",
+    "impression_mllm_source": "/content/drive/MyDrive/plm_mllm_radiology_demo/mllm_models/chexagent_impression",
+    "findings_plm_dir": "/content/drive/MyDrive/plm_mllm_radiology_demo/plm_models/radbert_findings_model",
+    "impression_plm_dir": "/content/drive/MyDrive/plm_mllm_radiology_demo/plm_models/radbert_impression_model"
+  },
+  "generated_report": {
+    "findings": "Lungs and Airways:\n- Diffuse bronchiectasis\n- Bronchial wall thickening\n- Scattered nodular opacities\n\nPleura:\n- No pleural effusion\n- No pneumothorax\n\nCardiovascular:\n- Normal cardiomediastinal silhouette\n\nMusculoskeletal and Chest Wall:\n- No acute osseous abnormality",
+    "impression": "1. Severe bronchiectasis with bronchial wall thickening and cystic changes, consistent with the patient's known history of cystic fibrosis.\n2. No evidence of new focal consolidation.\n3. Stable cardiomediastinal silhouette.",
+    "combined": "FINDINGS:\nLungs and Airways:\n- Diffuse bronchiectasis\n- Bronchial wall thickening\n- Scattered nodular opacities\n\nPleura:\n- No pleural effusion\n- No pneumothorax\n\nCardiovascular:\n- Normal cardiomediastinal silhouette\n\nMusculoskeletal and Chest Wall:\n- No acute osseous abnormality\n\nIMPRESSION:\n1. Severe bronchiectasis with bronchial wall thickening and cystic changes, consistent with the patient's known history of cystic fibrosis.\n2. No evidence of new focal consolidation.\n3. Stable cardiomediastinal silhouette."
+  },
+  "structured_findings": {
+    "No Finding": {
+      "state": "not_mentioned",
+      "confidence": 0.9992063641548157,
+      "confidence_level": "high",
+      "source": "generated_findings",
+      "probabilities": {
+        "not_mentioned": 0.9992063641548157,
+        "absent": 0.0001383630878990516,
+        "uncertain": 9.095291170524433e-05,
+        "present": 0.0005642692558467388
+      },
+      "label_reliability_from_200_case_safety_analysis": "low_support_interpret_with_caution"
+    },
+    "Enlarged Cardiomediastinum": {
+      "state": "uncertain",
+      "confidence": 0.9779452681541443,
+      "confidence_level": "high",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.020725011825561523,
+        "absent": 0.0009241249645128846,
+        "uncertain": 0.9779452681541443,
+        "present": 0.0004056439793203026
+      },
+      "label_reliability_from_200_case_safety_analysis": "high_risk_label"
+    },
+    "Cardiomegaly": {
+      "state": "absent",
+      "confidence": 0.981572151184082,
+      "confidence_level": "high",
+      "source": "generated_findings",
+      "probabilities": {
+        "not_mentioned": 0.016310961917042732,
+        "absent": 0.981572151184082,
+        "uncertain": 0.0006297245272435248,
+        "present": 0.0014871637104079127
+      },
+      "label_reliability_from_200_case_safety_analysis": "moderate_reliability"
+    },
+    "Lung Opacity": {
+      "state": "present",
+      "confidence": 0.9982688426971436,
+      "confidence_level": "high",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.001020951895043254,
+        "absent": 0.00040070866816677153,
+        "uncertain": 0.0003095379506703466,
+        "present": 0.9982688426971436
+      },
+      "label_reliability_from_200_case_safety_analysis": "relatively_reliable"
+    },
+    "Lung Lesion": {
+      "state": "present",
+      "confidence": 0.9867722392082214,
+      "confidence_level": "high",
+      "source": "generated_findings",
+      "probabilities": {
+        "not_mentioned": 0.004744044505059719,
+        "absent": 0.002703829202800989,
+        "uncertain": 0.005779960658401251,
+        "present": 0.9867722392082214
+      },
+      "label_reliability_from_200_case_safety_analysis": "high_risk_label"
+    },
+    "Edema": {
+      "state": "not_mentioned",
+      "confidence": 0.9994282126426697,
+      "confidence_level": "high",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.9994282126426697,
+        "absent": 7.126288255676627e-05,
+        "uncertain": 0.00011298983736196533,
+        "present": 0.0003875815018545836
+      },
+      "label_reliability_from_200_case_safety_analysis": "moderate_reliability"
+    },
+    "Consolidation": {
+      "state": "absent",
+      "confidence": 0.8031701445579529,
+      "confidence_level": "medium",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.00046712049515917897,
+        "absent": 0.8031701445579529,
+        "uncertain": 0.1938556730747223,
+        "present": 0.0025069979019463062
+      },
+      "label_reliability_from_200_case_safety_analysis": "high_risk_label"
+    },
+    "Pneumonia": {
+      "state": "not_mentioned",
+      "confidence": 0.998581051826477,
+      "confidence_level": "high",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.998581051826477,
+        "absent": 0.0009561993647366762,
+        "uncertain": 0.00021405494771897793,
+        "present": 0.00024875462986528873
+      },
+      "label_reliability_from_200_case_safety_analysis": "high_risk_label"
+    },
+    "Atelectasis": {
+      "state": "not_mentioned",
+      "confidence": 0.9952991008758545,
+      "confidence_level": "high",
+      "source": "generated_findings",
+      "probabilities": {
+        "not_mentioned": 0.9952991008758545,
+        "absent": 0.0006438064156100154,
+        "uncertain": 0.0015412326902151108,
+        "present": 0.0025158238131552935
+      },
+      "label_reliability_from_200_case_safety_analysis": "moderate_reliability"
+    },
+    "Pneumothorax": {
+      "state": "absent",
+      "confidence": 0.9934881925582886,
+      "confidence_level": "high",
+      "source": "generated_findings",
+      "probabilities": {
+        "not_mentioned": 0.004311202559620142,
+        "absent": 0.9934881925582886,
+        "uncertain": 0.0010702579747885466,
+        "present": 0.0011303207138553262
+      },
+      "label_reliability_from_200_case_safety_analysis": "high_risk_label"
+    },
+    "Pleural Effusion": {
+      "state": "absent",
+      "confidence": 0.9832399487495422,
+      "confidence_level": "high",
+      "source": "generated_findings",
+      "probabilities": {
+        "not_mentioned": 0.000503522518556565,
+        "absent": 0.9832399487495422,
+        "uncertain": 0.002406178042292595,
+        "present": 0.013850442133843899
+      },
+      "label_reliability_from_200_case_safety_analysis": "relatively_reliable"
+    },
+    "Pleural Other": {
+      "state": "absent",
+      "confidence": 0.5645327568054199,
+      "confidence_level": "low",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.012027387507259846,
+        "absent": 0.5645327568054199,
+        "uncertain": 0.2444869577884674,
+        "present": 0.1789528727531433
+      },
+      "label_reliability_from_200_case_safety_analysis": "low_support_interpret_with_caution"
+    },
+    "Fracture": {
+      "state": "not_mentioned",
+      "confidence": 0.9992013573646545,
+      "confidence_level": "high",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.9992013573646545,
+        "absent": 0.0005227018264122307,
+        "uncertain": 6.97847644914873e-05,
+        "present": 0.00020615661924239248
+      },
+      "label_reliability_from_200_case_safety_analysis": "high_risk_label"
+    },
+    "Support Devices": {
+      "state": "not_mentioned",
+      "confidence": 0.9976508021354675,
+      "confidence_level": "high",
+      "source": "generated_impression",
+      "probabilities": {
+        "not_mentioned": 0.9976508021354675,
+        "absent": 0.001248156768269837,
+        "uncertain": 0.00014991000352893025,
+        "present": 0.0009512230753898621
+      },
+      "label_reliability_from_200_case_safety_analysis": "relatively_reliable"
+    }
+  },
+  "case_summary": {
+    "case_status": "abnormal_findings_detected",
+    "present_abnormal_findings": [
+      "Lung Opacity",
+      "Lung Lesion"
+    ],
+    "uncertain_abnormal_findings": [
+      "Enlarged Cardiomediastinum"
+    ],
+    "active_abnormal_findings": [
+      "Enlarged Cardiomediastinum",
+      "Lung Opacity",
+      "Lung Lesion"
+    ],
+    "no_finding_state": "not_mentioned"
+  },
+  "consistency_and_safety_checks": {
+    "no_finding_contradiction": false,
+    "no_finding_consistency_passed": true,
+    "low_confidence_threshold": 0.7,
+    "low_confidence_labels": [
+      "Pleural Other"
+    ],
+    "high_risk_active_labels": [
+      "Enlarged Cardiomediastinum",
+      "Lung Lesion"
+    ],
+    "label_reliability_note": "Reliability categories are descriptive and based on the 200-case safety analysis."
+  },
+  "decision_support": {
+    "review_recommended": true,
+    "review_priority": "medium",
+    "reasons": [
+      "One or more abnormal findings are extracted as present.",
+      "One or more abnormal findings are extracted as uncertain.",
+      "One or more PLM labels have low confidence.",
+      "One or more active findings belong to high-risk or low-support labels from the 200-case safety analysis."
+    ],
+    "final_note": "This is a decision-support output. It is not a final diagnosis."
+  },
+  "runtime_and_generation_info": {
+    "findings": {
+      "model_source": "/content/drive/MyDrive/plm_mllm_radiology_demo/mllm_models/chexagent_findings",
+      "repo_id": "StanfordAIMI/CheXagent-2-3b-srrg-findings",
+      "runtime_seconds": 7.5635459423065186,
+      "success": true,
+      "error": null
+    },
+    "impression": {
+      "model_source": "/content/drive/MyDrive/plm_mllm_radiology_demo/mllm_models/chexagent_impression",
+      "repo_id": "StanfordAIMI/CheXagent-2-3b-srrg-impression",
+      "runtime_seconds": 3.3833913803100586,
+      "success": true,
+      "error": null
+    },
+    "total_generation_runtime_seconds": 10.946937322616577,
+    "errors": []
+  }
+}

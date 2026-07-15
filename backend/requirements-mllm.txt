@@ -1,0 +1,15 @@
+# Install this only in the separate MLLM environment, not in the main FastAPI/PLM environment.
+torch
+transformers==4.39.0
+huggingface-hub==0.23.0
+accelerate
+sentencepiece
+protobuf
+safetensors
+einops
+pillow
+numpy
+matplotlib
+albumentations
+opencv-python
+pyarrow
