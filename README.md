@@ -266,7 +266,7 @@ Screenshots are not included yet. Suggested screenshots before publication:
 
 ## License
 
-License not selected yet. Add a `LICENSE` file before public reuse or redistribution.
+This repository contains only the application code. Pretrained model weights (CheXagent, RadBERT) are not distributed and remain subject to their respective licenses and terms of use.
 
 ## Future Work
 
